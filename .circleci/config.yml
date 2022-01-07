@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Show config
+          command: |
+            echo $PATH
+            which python
+            python -version
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum ".python-version" }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install project dependencies
+          command: |
+            pip install -r requirements.txt
+      - save_cache:
+          key: dependency-cache-{{ checksum ".python-version" }}-{{ checksum "requirements.txt" }}
+          paths:
+            - .cache
+      - run:
+          name: Test
+          command: |
+            python -m unittest -d src
+      - store_test_results:
+          path: ./test_output
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
