@@ -1,17 +1,8 @@
 version: 2.1
 orbs:
   python: circleci/python@1.5.0
-jobs:
-  test:
-    executor: python/default
-    steps:
-      - checkout
-      - python/dist
-      - python/install-packages:
-          pkg-manager: pip
-      - python/test
 workflows:
   version: 2
   main:
     jobs:
-      - test
+      - python/test
