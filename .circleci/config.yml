@@ -5,4 +5,5 @@ workflows:
   version: 2
   main:
     jobs:
-      - python/test
+      - python/test:
+          version: {{ cat ".python-version" }}
