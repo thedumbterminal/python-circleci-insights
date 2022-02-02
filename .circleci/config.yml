@@ -1,30 +1,17 @@
 version: 2.1
 orbs:
-  python: circleci/python@1.2
+  python: circleci/python@1.5.0
 jobs:
   test:
-    docker:
-      - image: circleci/python:3.9
+    executor: python/default
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum ".python-version" }}-{{ checksum "requirements.txt" }}
+      - python/dist
       - python/install-packages:
           pkg-manager: pip
-      - save_cache:
-          key: dependency-cache-{{ checksum ".python-version" }}-{{ checksum "requirements.txt" }}
-          paths:
-            - .cache
-      - run:
-          name: Test
-          command: |
-            python -m unittest -d src
-      - store_test_results:
-          path: ./test_output
-
+      - python/test
 workflows:
   version: 2
-  test:
+  main:
     jobs:
       - test
