@@ -6,4 +6,4 @@ workflows:
     jobs:
       - python/test:
           version: 3.9.1
-          test-tool-args: 'discover -s src'
+          test-tool-args: 'discover -s src -p *_test.py'
