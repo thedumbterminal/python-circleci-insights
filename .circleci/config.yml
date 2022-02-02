@@ -2,8 +2,7 @@ version: 2.1
 orbs:
   python: circleci/python@1.5.0
 workflows:
-  version: 2
   main:
     jobs:
       - python/test:
-          version: {{ cat ".python-version" }}
+          version: 3.9.1
