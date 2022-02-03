@@ -3,8 +3,8 @@ orbs:
   python: circleci/python@1.5.0
 jobs:
   build:
-    executor:
-      name: '3.9'
+    docker:
+      - image: cimg/python:3.9.1
     steps:
       - checkout
       - python/install-packages:
