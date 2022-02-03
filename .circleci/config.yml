@@ -6,9 +6,12 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/install-packages
+      - python/install-packages:
+          pkg-manager: pip
       - run:
-          command: 'python -m junitxml.main -s src -p *_test.py'
+          name: test
+          command: |
+            python -m junitxml.main -s src -p *_test.py
       - store_test_results
 workflows:
   main:
