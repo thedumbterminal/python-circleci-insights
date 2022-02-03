@@ -3,8 +3,7 @@ orbs:
   python: circleci/python@1.5.0
 jobs:
   build:
-    executor:
-      tag: 3.9.1
+    executor: python/default
     steps:
       - checkout
       - python/install-packages
