@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   python: circleci/python@1.5.0
 jobs:
-  build:
+  build_unittest:
     executor:
       name: python/default
       tag: '3.9.1'
@@ -19,4 +19,8 @@ jobs:
 workflows:
   main:
     jobs:
-      - build
+      - build_unittest
+      - python/test:
+          test-tool: pytest
+          test-tool-args: '--junitxml=test-report/pytest.xml'
+          version: '3.9.1'
