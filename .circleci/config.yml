@@ -13,6 +13,8 @@ jobs:
           name: test
           command: |
             python -m junitxml.main -s src -p *_test.py
+      - store_test_results:
+          path: junit.xml
 workflows:
   main:
     jobs:
