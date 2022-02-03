@@ -1,9 +1,16 @@
 version: 2.1
 orbs:
   python: circleci/python@1.5.0
+jobs:
+  build:
+    executor: python/3.9.1
+    steps:
+      - checkout
+      - python/install-packages
+      - run:
+          command: 'python -m junitxml.main -s src -p *_test.py'
+      - store_test_results
 workflows:
   main:
     jobs:
-      - python/test:
-          version: 3.9.1
-          test-tool-args: 'discover -s src -p *_test.py'
+      - build
