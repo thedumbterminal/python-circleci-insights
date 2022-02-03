@@ -4,8 +4,7 @@ orbs:
 jobs:
   build:
     executor:
-      name: 'default'
-      tag: '3.9'
+      name: '3.9'
     steps:
       - checkout
       - python/install-packages:
