@@ -2,3 +2,5 @@
 /.pydevproject
 __pycache__
 /junit.xml
+/.pytest_cache/
+/test-report/
