@@ -8,5 +8,5 @@ def slow():
     time.sleep(10)
     return 10
 
-def flakey():
+def flaky():
     return random.randint(0, 2)
